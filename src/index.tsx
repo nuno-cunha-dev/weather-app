@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Forecast from './Pages/forecast';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Forecast />
   </React.StrictMode>,
   document.getElementById('root')
 );
