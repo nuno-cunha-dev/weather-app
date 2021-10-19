@@ -6,38 +6,36 @@ import './index.css';
 
 export default class Forecast extends React.Component {
     state = {
-        weatherData: {
-            upToDate: false,
-            temperature: 0,
-            weatherDescription: '',
-            city: '',
-        }
+        isWeatherDataLoaded: false,
+        weatherDto: {},
     };
 
     componentDidMount() {
-        if(this.state.weatherData.upToDate) {
+        if (this.state.isWeatherDataLoaded) {
             return;
         }
-        
+
         axios.get('https://api.365weather.tk/weather/current')
-        .then((request: any) => {
-            this.buildWeatherBlockData(request.data);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+            .then((request: any) => {
+                this.buildWeatherBlockData(request.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     private buildWeatherBlockData(weatherDto: WeatherDto) {
-        this.setState({ weatherData: {
-            upToDate: true,
-            temperature: weatherDto.temperature,
-            weatherDescription: weatherDto.description,
-            city: weatherDto.city,
-        }});
+        this.setState({
+            isWeatherDataLoaded: true,
+            weatherDto: weatherDto
+        });
     }
 
     render() {
-        return <WeatherBlock className="center-xy" weather={this.state.weatherData}/>;
+        if (this.state.isWeatherDataLoaded) {
+            return <WeatherBlock className="center-xy" weather={this.state.weatherDto as WeatherDto} />;            
+        }
+
+        return '';
     }
 }
