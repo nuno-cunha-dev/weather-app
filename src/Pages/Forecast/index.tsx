@@ -19,7 +19,7 @@ export default class Forecast extends React.Component {
             return;
         }
         
-        axios.get('http://api.365weather.tk/weather/current')
+        axios.get('https://api.365weather.tk/weather/current')
         .then((request: any) => {
             this.buildWeatherBlockData(request.data);
         })
