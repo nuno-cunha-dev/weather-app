@@ -15,7 +15,7 @@ export default class Forecast extends React.Component {
             return;
         }
 
-        axios.get('http://api.weather.nunocunha.dev/weather/current')
+        axios.get('https://api.weather.nunocunha.dev/weather/current')
             .then((request: any) => {
                 this.buildWeatherBlockData(request.data);
             })
